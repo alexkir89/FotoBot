@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: shelf_pg_dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tianshan
+      POSTGRES_USER: tianshan_user
+      POSTGRES_PASSWORD: tianshan_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+
+  bot:
+    build: .
+    container_name: shelf_bot_dev
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: tianshan
+      DB_USER: tianshan_user
+      DB_PASSWORD: tianshan_pass
+      SSL_ROOT_CERT: /app/certs/root.crt
+    volumes:
+      - ./dataset:/app/dataset
+      - ./models:/app/models
+      - ./certs/root.crt:/app/certs/root.crt:ro
+
+volumes:
+  pgdata_dev:

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+certs/root.crt
+models/shelf.pt
+dataset/images/*
+dataset/labels/*
+dataset/review/*
+!dataset/images/.gitkeep
+!dataset/labels/.gitkeep
+!dataset/review/.gitkeep
