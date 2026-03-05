@@ -1,0 +1,11 @@
+services:
+  bot:
+    build: .
+    container_name: shelf_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./dataset:/app/dataset
+      - ./models:/app/models
+      - ./certs/root.crt:/app/certs/root.crt:ro
