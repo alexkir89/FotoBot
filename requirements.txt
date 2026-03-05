@@ -1,0 +1,6 @@
+aiogram==3.13.1
+asyncpg==0.29.0
+ultralytics==8.3.3
+pillow==10.4.0
+PyYAML==6.0.2
+python-dotenv==1.0.1
